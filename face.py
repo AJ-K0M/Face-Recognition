@@ -27,11 +27,12 @@ tello.streamon()
 model = load_model('keras_model.h5')
 
 # Function for class names
+# class names found in label.txt
 def get_className(classNo):
     if classNo == 1:
-        return "Patrick Omodara"
+        return "a" - # label.txt
     elif classNo == 0:
-        return "William Carpenter"
+        return "W" - # label.txt
 
 # Mediapipe face detection
 mp_face_detection = mp.solutions.face_detection
@@ -114,7 +115,7 @@ while True:
             probabilityValue = np.amax(prediction)
 
             classLabel = get_className(classIndex)
-            if probabilityValue < 0.5 or classLabel not in ["Patrick Omodara", "William Carpenter"]:
+            if probabilityValue < 0.5 or classLabel not in ["a", "W"]:
                 classLabel = "Unrecognized Face"
 
             cv2.rectangle(frame, bbox, (0, 255, 0), 2)
